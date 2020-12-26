@@ -4,7 +4,7 @@
 
     <groupId>com.github.arvyy</groupId>
     <artifactId>json-mapper</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
 
     <name>R7RS json mapper</name>
     <description>
@@ -32,7 +32,7 @@
         <connection>scm:git:https://github.com/arvyy/scheme-json-mapper.git</connection>
         <developerConnection>scm:git:https://github.com/arvyy/scheme-json-mapper.git</developerConnection>
         <url>http://github.com/arvyy/scheme-json-mapper/tree/master</url>
-      <tag>json-mapper-0.0.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <properties>
