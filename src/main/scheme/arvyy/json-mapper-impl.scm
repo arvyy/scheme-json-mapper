@@ -13,6 +13,17 @@
   (input mapping-error-input)
   (cause mapping-error-cause))
 
+(define (mapping-error->string err)
+  (define port (open-output-string))
+  (let loop ((err err))
+   (define next (mapping-error-cause err))
+   (display (mapping-error-message err) port)
+   (display "\nInput: " port)
+   (write (mapping-error-input err) port)
+   (if next
+       (loop next)
+       (get-output-string port))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; PRIMITIVES
 
 ;;SYMBOL

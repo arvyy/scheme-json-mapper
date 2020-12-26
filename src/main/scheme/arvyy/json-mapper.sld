@@ -1,6 +1,7 @@
 (define-library
   (arvyy json-mapper)
   (import (scheme base)
+          (scheme write)
           (scheme case-lambda)
           (scheme lazy)
           (srfi 180))
@@ -13,6 +14,7 @@
     mapping-error-input
     mapping-error-message
     mapping-error-cause
+    mapping-error->string
     
     symbol
     number

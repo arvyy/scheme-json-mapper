@@ -11,6 +11,17 @@
   (right tree-right)
   (value tree-value))
 
+(define (tree-branch-equal? b1 b2)
+  (or (and (not b1) (not b2))
+      (and (tree? b1) (tree? b2) (tree-equal? b1 b2))))
+
+(define (tree-equal? t1 t2)
+  (and (equal? (tree-value t1) (tree-value t2))
+       (tree-branch-equal? (tree-left t1)
+                           (tree-left t2))
+       (tree-branch-equal? (tree-right t1)
+                           (tree-right t2))))
+
 (test-begin "Json mapper")
 
 ;; on test end exit with non-zero status if there were failures
@@ -41,11 +52,12 @@
             ('right tree-right (nullable-of tree-json-type) #f)
             ('value tree-value json-node)))
   (tree-mapper-setter! tree-json-type*)
-  (test-equal
-    (make-tree
-      (make-tree #f #f 1)
-      (make-tree #f #f 2) 
-      3)
-    ((mapper-reader tree-json-type) '((left . ((value . 1))) (value . 3) (right . ((value . 2)))))))
+  (test-assert
+    (tree-equal?
+      (make-tree
+        (make-tree #f #f 1)
+        (make-tree #f #f 2) 
+        3)
+      ((mapper-reader tree-json-type) '((left . ((value . 1))) (value . 3) (right . ((value . 2))))))))
 
 (test-end)
